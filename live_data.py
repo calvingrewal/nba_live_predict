@@ -1,2 +1,2 @@
 def get_live_data():
-    return "live !!"
+    return "hey eric!"
