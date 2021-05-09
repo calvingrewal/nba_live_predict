@@ -18,7 +18,7 @@ def hello_world():
 @app.route('/boxscores')
 def live_predict():
 	# get live play by play data
-	live_pbp = get_live_data()
-	return live_pbp
+	# live_pbp = get_live_data()
+	return "hey bestie"
 
 
