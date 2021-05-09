@@ -25,14 +25,12 @@ def build_batch(data, homeLabels, awayLabels, indices, masks):
 seconds_per_play = 10
 start_time = datetime.strptime("05/08/21 21:43", "%m/%d/%y %H:%M")
 def get_live_data():
-   
+ 
     seconds_since_start = (datetime.now() - start_time).total_seconds()
 
     num_plays = min(700, int(seconds_since_start // seconds_per_play))
 
     print(f"{seconds_since_start} seconds have passed since start, returning {num_plays} plays")
-
-    print(plays.shape)
 
     plays = get_k_plays(num_plays)
 
@@ -44,15 +42,11 @@ def get_live_data():
         last_output[j] = output_seq[j, num_plays, :]   
     
     print(last_output * 15 + 100)
-    print(sizes[:5])
-    print(pd.DataFrame(data=plays[:,sizes[0]-1, :], columns=cols))
-
-
     return 
 
 def get_k_plays(k):
     plays = test_data[:1, :, :]
-    plays[:, num_plays+1:] = -1000
+    plays[:, k+1:] = -1000
 
     return plays
 
