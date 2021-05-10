@@ -29,23 +29,31 @@
 				<div class="list-group">
 					{% for game in games %}
 						<a class="score-boxes list-group-item list-group-item-action" href="/boxscores/{{ game['GAME_ID'] }}">
-							<div class="row">
-								<div class="col-xs-4 team">
-								    {{ game["TEAM_1_ABBREVIATION"] }} {{ game["TEAM_1_PTS"] }}
-									<br>
-									Predicted: {{ game["TEAM_1_PRED"] }}
-                                    <br>
-                                    {{ game["TEAM_1_WINS_LOSSES"] }}
+							<div class="col-xs-12">
+								<div class="row">
+		
+									{{ game["TIME_LEFT"] }}
+
+									
 								</div>
-								<div class="col-xs-4">
-									-&nbsp;
-								</div>
-								<div class="col-xs-4 team">
-								    {{ game["TEAM_2_ABBREVIATION"] }} {{ game["TEAM_2_PTS"] }}
-									<br>
-									Predicted: {{ game["TEAM_2_PRED"] }}
-                                    <br>
-                                    {{ game["TEAM_2_WINS_LOSSES"] }}
+								<div class="row">
+									<div class="col-xs-4 team">
+										{{ game["TEAM_1_ABBREVIATION"] }} {{ game["TEAM_1_PTS"] }}
+										<br>
+										Predicted: {{ game["TEAM_1_PRED"] }}
+										<br>
+										{{ game["TEAM_1_WINS_LOSSES"] }}
+									</div>
+									<div class="col-xs-4">
+										-&nbsp;
+									</div>
+									<div class="col-xs-4 team">
+										{{ game["TEAM_2_ABBREVIATION"] }} {{ game["TEAM_2_PTS"] }}
+										<br>
+										Predicted: {{ game["TEAM_2_PRED"] }}
+										<br>
+										{{ game["TEAM_2_WINS_LOSSES"] }}
+									</div>
 								</div>
 							</div>
 						</a>
