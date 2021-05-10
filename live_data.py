@@ -22,17 +22,23 @@ def build_batch(data, homeLabels, awayLabels, indices, masks):
         batch_data[i, batch_masks[i]+1:] = -1000
     return batch_data, batch_labels_home, batch_labels_away, batch_masks
 
-seconds_per_play = 10
-start_time = datetime.strptime("05/08/21 21:43", "%m/%d/%y %H:%M")
-def get_live_data():
- 
-    seconds_since_start = (datetime.now() - start_time).total_seconds()
+seconds_per_play = 1
+# start_time = datetime.strptime("05/08/21 23:50", "%m/%d/%y %H:%M")
+start_times = {
+    0: datetime.strptime("05/09/21 22:21", "%m/%d/%y %H:%M"),
+    1: datetime.strptime("05/09/21 22:42", "%m/%d/%y %H:%M"),
+}
+def get_live_preds():
+    plays = torch.zeros(len(start_times), 700, test_data.shape[-1])
+    for i, (game_idx, dt) in enumerate(start_times.items()):
 
-    num_plays = min(700, int(seconds_since_start // seconds_per_play))
+        seconds_since_start = (datetime.now() - dt).total_seconds()
 
-    print(f"{seconds_since_start} seconds have passed since start, returning {num_plays} plays")
+        num_plays = min(699, int(seconds_since_start // seconds_per_play))
 
-    plays = get_k_plays(num_plays)
+        print(f"{seconds_since_start} seconds have passed since start, returning {num_plays} plays")
+
+        plays[i] = get_k_plays(num_plays, game_idx)
 
     output_seq = model(plays)
         
@@ -41,13 +47,14 @@ def get_live_data():
     for j in range(B):
         last_output[j] = output_seq[j, num_plays, :]   
     
-    print(last_output * 15 + 100)
-    return 
+    scaled = last_output * 15 + 100
+    print(scaled)
+    return scaled.tolist()
 
-def get_k_plays(k):
-    plays = test_data[:1, :, :]
-    plays[:, k+1:] = -1000
+def get_k_plays(k, game_idx):
+    plays = test_data[game_idx, :, :]
+    plays[k+1:] = -1000
 
     return plays
 
-get_live_data()
+# get_live_data()
