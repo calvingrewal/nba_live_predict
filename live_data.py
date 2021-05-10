@@ -4,8 +4,8 @@ from LSTM_Model import LSTM_Model
 from prepare_data import cols
 import pandas as pd
 test_data = torch.load('test_data.pt')
-
-state_dict = torch.load('model2.pt')
+game_lengths = torch.load('game_lengths.pt')
+state_dict = torch.load('model3.pt')
 model = LSTM_Model(test_data.shape[-1], 512)
 model.load_state_dict(state_dict)
 model.eval()

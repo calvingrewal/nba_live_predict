@@ -16,7 +16,7 @@ cols = ['GameTimeLeftSin', 'GameTimeLeftCos', 'Home 2-pt shot', 'Away 2-pt shot'
         'HomeFreeThrowTotal', 'AwayMadeFreeThrowTotal',
         'HomeMadeFreeThrowTotal', 'AwayAssistTotal', 'HomeAssistTotal',
         'AwayDRBTotal', 'HomeDRBTotal', 'AwayORBTotal', 'HomeORBTotal',
-        'AwayFoulTotal', 'HomeFoulTotal']
+        'AwayFoulTotal', 'HomeFoulTotal', 'AwayScore', 'HomeScore']
 PAD_LENGTH = 700
 def pad_data(data):
     vec_length = len(data[0][0])
@@ -48,6 +48,9 @@ def prep_data(path):
     test_masks = pad_data(test_data)
     test_data = torch.tensor(test_data)
 
+    game_lengths = df_test.groupby('URL').size().tolist()
+    game_lengths = torch.tensor(game_lengths)
+    torch.save(game_lengths, 'game_lengths.pt')
     torch.save(test_data, 'test_data.pt')
 
 if __name__ == "__main__":
