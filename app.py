@@ -14,7 +14,7 @@ def format_time(t):
     return ":".join(a[1:])
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
-    pred_scores, live_scores, time_lefts = get_live_preds()
+    pred_scores, live_scores, time_lefts, asts, drbs, orbs, fts, twopt, threept = get_live_preds()
     # print(live_scores)
     games = []
     teams = [("GSW", "POR"), ("MEM", "ATL")]
@@ -29,14 +29,24 @@ def hello_world():
         print(live_scores)
         game = {"TEAM_1_ABBREVIATION": teams[i][1], 
             "TEAM_1_PTS": live_score[0],
-            "TEAM_1_PRED": int(pred_score[1]),
-            "TEAM_1_WINS_LOSSES": "45-27",
-            "TEAM_2_ABBREVIATION": teams[i][0], 
+            "TEAM_1_PRED": int(pred_score[0]),
+            "TEAM_2_ABBREVIATION": "LAL", 
             "TEAM_2_PTS": live_score[1],
-            "TEAM_2_PRED": int(pred_score[0]),
-            "TEAM_2_WINS_LOSSES": "45-27",
+            "TEAM_2_PRED": int(pred_score[1]),
             "TIME_LEFT": format_time(d),
-            "QUARTER": time_left[0]
+            "QUARTER": time_left[0],
+            "TEAM_1_AST": int(asts[i][0].item()),
+            "TEAM_2_AST": int(asts[i][1].item()),
+            "TEAM_1_DRB": int(drbs[i][0].item()),
+            "TEAM_2_DRB": int(drbs[i][1].item()),
+            "TEAM_1_ORB": int(orbs[i][0].item()),
+            "TEAM_2_ORB": int(orbs[i][1].item()),
+            "TEAM_1_FTS": round(fts[i][0].item() * 100, 2),
+            "TEAM_2_FTS": round(fts[i][1].item()* 100, 2),
+            "TEAM_1_2PT": round(twopt[i][0].item()* 100,2),
+            "TEAM_2_2PT": round(twopt[i][1].item()* 100, 2),
+            "TEAM_1_3PT": round(threept[i][0].item()* 100,2),
+            "TEAM_2_3PT": round(threept[i][1].item()* 100,2)
             }
    
         games.append(game)

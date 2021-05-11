@@ -41,8 +41,15 @@ def get_live_preds():
     plays = torch.zeros(len(start_times), 700, test_data.shape[-1])
     live_scores = torch.zeros(len(start_times), 2)
     time_left = torch.zeros(len(start_times), 2)
-    
+    asts = []
+    drbs = []
+    orbs = []
+    fts = []
+    twopt = []
+    threept = []
+
     play_indices = []
+
     for i, (game_idx, dt) in enumerate(start_times.items()):
 
         seconds_since_start = (datetime.now() - dt).total_seconds()
@@ -63,8 +70,18 @@ def get_live_preds():
         # print('time?', time_left[i])
         plays[i] = get_k_plays(num_plays, game_idx)
 
+        asts.append((test_data_unnormalized[game_idx, play_idx, cols.index("AwayAssistTotal")], test_data_unnormalized[game_idx, play_idx, cols.index("HomeAssistTotal")]))
+        drbs.append((test_data_unnormalized[game_idx, play_idx, cols.index("AwayDRBTotal")], test_data_unnormalized[game_idx, play_idx, cols.index("HomeDRBTotal")]))
+        orbs.append((test_data_unnormalized[game_idx, play_idx, cols.index("AwayORBTotal")], test_data_unnormalized[game_idx, play_idx, cols.index("HomeORBTotal")]))
+        fts.append((test_data_unnormalized[game_idx, play_idx, cols.index("AwayMadeFreeThrowTotal")] / test_data_unnormalized[game_idx, play_idx, cols.index("AwayFreeThrowTotal")],
+        	test_data_unnormalized[game_idx, play_idx, cols.index("HomeMadeFreeThrowTotal")] / test_data_unnormalized[game_idx, play_idx, cols.index("HomeFreeThrowTotal")]))
+        twopt.append((test_data_unnormalized[game_idx, play_idx, cols.index("AwayMade 2-pt shotTotal")] / test_data_unnormalized[game_idx, play_idx, cols.index("Away 2-pt shotTotal")],
+        	test_data_unnormalized[game_idx, play_idx, cols.index("HomeMade 2-pt shotTotal")] / test_data_unnormalized[game_idx, play_idx, cols.index("Home 2-pt shotTotal")]))
+        threept.append((test_data_unnormalized[game_idx, play_idx, cols.index("AwayMade 3-pt shotTotal")] / test_data_unnormalized[game_idx, play_idx, cols.index("Away 3-pt shotTotal")],
+        	test_data_unnormalized[game_idx, play_idx, cols.index("HomeMade 3-pt shotTotal")] / test_data_unnormalized[game_idx, play_idx, cols.index("Home 3-pt shotTotal")]))
+        # print(game_lengths[game_idx])
 
-        plays[i] = get_k_plays(num_plays, game_idx)
+        # print(plays[game_idx, num_plays, -2])
 
     output_seq25 = model25(plays)
     output_seq75 = model75(plays)
@@ -89,7 +106,7 @@ def get_live_preds():
     # print(time_left)
     live_scores = live_scores * 15 + 100
     print(preds)
-    return preds.tolist(), live_scores.tolist(), time_left.tolist()
+    return preds.tolist(), live_scores.tolist(), time_left.tolist(), asts, drbs, orbs, fts, twopt, threept
 
 def get_k_plays(k, game_idx):
     plays = test_data[game_idx, :, :].detach().clone()
