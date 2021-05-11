@@ -15,7 +15,7 @@ def hello_world():
     pred_scores, live_scores, time_lefts, asts, drbs, orbs, fts, twopt, threept = get_live_preds()
     # print(live_scores)
     games = []
-    teams = [("GSW", "POR"), ("MEM", "ATL")]
+    teams = [("GSW", "POR"), ("MEM", "ATL"), ("LAL","LAC"), ("NYK", "BKN"), ("TOR", "MIA"), ("SAC", "DAL")]
     for i in range(len(pred_scores)):
         time_left = time_lefts[i]
         pred_score = pred_scores[i]
@@ -25,12 +25,12 @@ def hello_world():
 
         # print("time?",  str(d))
         print(live_scores)
-        game = {"TEAM_1_ABBREVIATION": teams[i][1], 
+        game = {"TEAM_1_ABBREVIATION": teams[i][0], 
             "TEAM_1_PTS": live_score[0],
-            "TEAM_1_PRED": int(pred_score[0]),
-            "TEAM_2_ABBREVIATION": "LAL", 
+            "TEAM_1_PRED": int(pred_score[1]),
+            "TEAM_2_ABBREVIATION": teams[i][1], 
             "TEAM_2_PTS": live_score[1],
-            "TEAM_2_PRED": int(pred_score[1]),
+            "TEAM_2_PRED": int(pred_score[0]),
             "TIME_LEFT": format_time(d),
             "QUARTER": time_left[0],
             "TEAM_1_AST": int(asts[i][0].item()),
@@ -45,7 +45,7 @@ def hello_world():
             "TEAM_2_2PT": round(twopt[i][1].item()* 100, 2),
             "TEAM_1_3PT": round(threept[i][0].item()* 100,2),
             "TEAM_2_3PT": round(threept[i][1].item()* 100,2)
-            }
+        }
    
         games.append(game)
     return render_template('index.html',games=games)

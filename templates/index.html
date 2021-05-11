@@ -55,7 +55,13 @@
 										<p font-size="15px">Predicted Score: {{ game["TEAM_1_PRED"] }} </p>
 									</div>
 									<div class="col-md-4 tothecenter">
-										vs
+										<div class="tothecenter">
+											vs 
+										</div>
+										<div class="tothecenter">
+											<p> Total: {{game['TEAM_1_PTS'] + game['TEAM_2_PRED'] + 2}} </p>
+											<p> Betting Odds: {{ game['TEAM_1_ABBREVIATION'] }} {{game['TEAM_1_PRED'] - game['TEAM_2_PRED'] }}</p>
+										</div>
 									</div>
 									<div class="col-md-4 totheright">
 										<img src="{{ '/logos/' + game['TEAM_2_ABBREVIATION'] + '.png' }}", width="auto", padding-left="10%", height="50px">

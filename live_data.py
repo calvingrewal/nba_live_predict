@@ -3,6 +3,7 @@ from datetime import datetime
 from LSTM_Model import LSTM_Model
 from prepare_data import cols
 import pandas as pd
+import numpy as np
 
 test_data = torch.load('test_data.pt')
 test_data_unnormalized = torch.load('test_data_unnormalized.pt')
@@ -30,12 +31,15 @@ def build_batch(data, homeLabels, awayLabels, indices, masks):
         batch_data[i, batch_masks[i]+1:] = -1000
     return batch_data, batch_labels_home, batch_labels_away, batch_masks
 
-seconds_per_play = 5
+seconds_per_play = 15
 # start_time = datetime.strptime("05/08/21 23:50", "%m/%d/%y %H:%M")
 start_times = {
-    16: datetime.strptime("05/10/21 18:09", "%m/%d/%y %H:%M"),
-    69: datetime.strptime("05/10/21 18:09", "%m/%d/%y %H:%M"),
-
+    16: datetime.strptime("05/10/21 19:49", "%m/%d/%y %H:%M"),
+    17: datetime.strptime("05/10/21 19:49", "%m/%d/%y %H:%M"),
+    69: datetime.strptime("05/10/21 19:49", "%m/%d/%y %H:%M"),
+    18: datetime.strptime("05/10/21 19:49", "%m/%d/%y %H:%M"),
+    19: datetime.strptime("05/10/21 19:49", "%m/%d/%y %H:%M"),
+    20: datetime.strptime("05/10/21 19:49", "%m/%d/%y %H:%M")
 }
 def get_live_preds():
     plays = torch.zeros(len(start_times), 700, test_data.shape[-1])
@@ -52,7 +56,7 @@ def get_live_preds():
 
     for i, (game_idx, dt) in enumerate(start_times.items()):
 
-        seconds_since_start = (datetime.now() - dt).total_seconds()
+        seconds_since_start = (datetime.now() - dt).total_seconds() % (700 * seconds_per_play)
         
         num_plays = min(699, int(seconds_since_start // seconds_per_play))
 
