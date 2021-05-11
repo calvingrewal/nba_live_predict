@@ -15,6 +15,9 @@
 	.tothecenter{
 		text-align: center;
 	}
+	.smalltext{
+		font-size: 15px;
+	}
 </style>
 <body>
 	<script>
@@ -46,10 +49,10 @@
 								<div class="row">
 									<div class="col-md-4">
 										<img src="{{ '/logos/' + game['TEAM_1_ABBREVIATION'] + '.png' }}", width="auto", padding-right="10%", height="50px">
-
-										<p font-size="30px">{{ game["TEAM_1_PTS"] }}</p>
-										<p font-size="15px">Predicted: {{ game["TEAM_1_PRED"] }} </p>
-										<p font-size="15px">{{ game["TEAM_1_WINS_LOSSES"] }} </p>
+										<p>{{ game["TEAM_1_PTS"] }}</p>
+										<p class="smalltext">AST: {{ game["TEAM_1_AST"]}} DRB: {{ game["TEAM_1_DRB"]}} ORB: {{ game["TEAM_1_ORB"]}}</p>
+										<p class="smalltext">FT%: {{ game["TEAM_1_FTS"]}} 2P%: {{ game["TEAM_1_2PT"]}} 3P%: {{ game["TEAM_1_3PT"]}}</p>
+										<p font-size="15px">Predicted Score: {{ game["TEAM_1_PRED"] }} </p>
 									</div>
 									<div class="col-md-4 tothecenter">
 										vs
@@ -57,8 +60,9 @@
 									<div class="col-md-4 totheright">
 										<img src="{{ '/logos/' + game['TEAM_2_ABBREVIATION'] + '.png' }}", width="auto", padding-left="10%", height="50px">
 										<p font-size="30px">{{ game["TEAM_2_PTS"] }}</p>
-										<p font-size="15px"> Predicted: {{ game["TEAM_2_PRED"] }} </p>	
-										<p font-size="15px"> {{ game["TEAM_2_WINS_LOSSES"] }} </p>
+										<p class="smalltext">AST: {{ game["TEAM_2_AST"]}} DRB: {{ game["TEAM_2_DRB"]}} ORB: {{ game["TEAM_2_ORB"]}}</p>
+										<p class="smalltext">FT%: {{ game["TEAM_2_FTS"]}} 2P%: {{ game["TEAM_2_2PT"]}} 3P%: {{ game["TEAM_2_3PT"]}}</p>
+										<p font-size="15px"> Predicted Score: {{ game["TEAM_2_PRED"] }} </p>	
 									</div>
 								</div>
 							</div>
