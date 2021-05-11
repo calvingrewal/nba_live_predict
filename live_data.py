@@ -33,13 +33,9 @@ def build_batch(data, homeLabels, awayLabels, indices, masks):
 seconds_per_play = 5
 # start_time = datetime.strptime("05/08/21 23:50", "%m/%d/%y %H:%M")
 start_times = {
-<<<<<<< Updated upstream
     16: datetime.strptime("05/10/21 18:09", "%m/%d/%y %H:%M"),
     69: datetime.strptime("05/10/21 18:09", "%m/%d/%y %H:%M"),
-=======
-    16: datetime.strptime("05/10/21 01:54", "%m/%d/%y %H:%M"),
-    69: datetime.strptime("05/09/21 22:42", "%m/%d/%y %H:%M"),
->>>>>>> Stashed changes
+
 }
 def get_live_preds():
     plays = torch.zeros(len(start_times), 700, test_data.shape[-1])
@@ -73,13 +69,23 @@ def get_live_preds():
     output_seq25 = model25(plays)
     output_seq75 = model75(plays)
         
-    B = output_seq.shape[0]
-    last_output = torch.zeros(B, 2) 
+    B = output_seq25.shape[0]
+    # last_output = torch.zeros(B, 2) 
+    preds = torch.zeros(B, 2) 
+
     for j in range(B):
+        # last_output[j] = output_seq[j, play_indices[j], :]  
+
+        quarter = time_left[i][0]
+        if quarter == 1:
+            preds[j] = output_seq25[j, play_indices[j]]
+        elif quarter == 2:
+            preds[j] = 0.5 * (output_seq25[j, play_indices[j]] + output_seq75[j, play_indices[j]])
+        elif quarter >= 3:
+            preds[j] = output_seq75[j, play_indices[j]]
         
-        last_output[j] = output_seq[j, play_indices[j], :]   
     
-    preds = last_output * 15 + 100
+    preds = preds * 15 + 100
     # print(time_left)
     live_scores = live_scores * 15 + 100
     print(preds)

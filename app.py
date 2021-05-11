@@ -15,6 +15,7 @@ def hello_world():
     pred_scores, live_scores, time_lefts = get_live_preds()
     # print(live_scores)
     games = []
+    teams = [("GSW", "POR"), ("MEM", "ATL")]
     for i in range(len(pred_scores)):
         time_left = time_lefts[i]
         pred_score = pred_scores[i]
@@ -24,13 +25,13 @@ def hello_world():
 
         # print("time?",  str(d))
         print(live_scores)
-        game = {"TEAM_1_ABBREVIATION": "LAC", 
+        game = {"TEAM_1_ABBREVIATION": teams[i][1], 
             "TEAM_1_PTS": live_score[0],
-            "TEAM_1_PRED": int(pred_score[0]),
+            "TEAM_1_PRED": int(pred_score[1]),
             "TEAM_1_WINS_LOSSES": "45-27",
-            "TEAM_2_ABBREVIATION": "LAL", 
+            "TEAM_2_ABBREVIATION": teams[i][0], 
             "TEAM_2_PTS": live_score[1],
-            "TEAM_2_PRED": int(pred_score[1]),
+            "TEAM_2_PRED": int(pred_score[0]),
             "TEAM_2_WINS_LOSSES": "45-27",
             "TIME_LEFT": format_time(d),
             "QUARTER": time_left[0]
