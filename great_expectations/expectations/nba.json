@@ -1,0 +1,687 @@
+{
+  "data_asset_type": "Dataset",
+  "expectation_suite_name": "nba",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "max_value": 107440,
+        "min_value": 87905
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_table_column_count_to_equal",
+      "kwargs": {
+        "value": 87
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "Date",
+          "URL",
+          "Location",
+          "Time",
+          "WinningTeam",
+          "Quarter",
+          "SecLeft",
+          "AwayPlay",
+          "HomePlay",
+          "AwayTeam",
+          "AwayScore",
+          "HomeTeam",
+          "HomeScore",
+          "ShotType",
+          "ShotOutcome",
+          "FoulType",
+          "Fouler",
+          "Fouled",
+          "FreeThrowShooter",
+          "FreeThrowOutcome",
+          "FreeThrowNum",
+          "TurnoverPlayer",
+          "TurnoverType",
+          "TurnoverCause",
+          "TurnoverCauser",
+          "Assister",
+          "ReboundType",
+          "Rebounder",
+          "hour",
+          "hour_sin",
+          "hour_cos",
+          "AwayPlayOneHot",
+          "HomePlayOneHot",
+          "AwayAssist",
+          "HomeAssist",
+          "2-pt shot",
+          "3-pt shot",
+          "Home 2-pt shot",
+          "Away 2-pt shot",
+          "Home 3-pt shot",
+          "Away 3-pt shot",
+          "HomeMade 2-pt shot",
+          "AwayMade 2-pt shot",
+          "HomeMade 3-pt shot",
+          "AwayMade 3-pt shot",
+          "AwayDRB",
+          "HomeDRB",
+          "AwayORB",
+          "HomeORB",
+          "AwayFoul",
+          "HomeFoul",
+          "AwayTurnover",
+          "HomeTurnover",
+          "AwayFreeThrow",
+          "HomeFreeThrow",
+          "AwayMadeFreeThrow",
+          "HomeMadeFreeThrow",
+          "GameTimeLeft",
+          "GameTimeLeftSin",
+          "GameTimeLeftCos",
+          "Home 2-pt shotTotal",
+          "Away 2-pt shotTotal",
+          "HomeMade 2-pt shotTotal",
+          "AwayMade 2-pt shotTotal",
+          "Home 3-pt shotTotal",
+          "Away 3-pt shotTotal",
+          "HomeMade 3-pt shotTotal",
+          "AwayMade 3-pt shotTotal",
+          "AwayTurnoverTotal",
+          "HomeTurnoverTotal",
+          "AwayFreeThrowTotal",
+          "HomeFreeThrowTotal",
+          "AwayMadeFreeThrowTotal",
+          "HomeMadeFreeThrowTotal",
+          "AwayAssistTotal",
+          "HomeAssistTotal",
+          "AwayDRBTotal",
+          "HomeDRBTotal",
+          "AwayORBTotal",
+          "HomeORBTotal",
+          "AwayFoulTotal",
+          "HomeFoulTotal",
+          "HomeCurrentTotal",
+          "AwayCurrentTotal",
+          "HomeFinalScore",
+          "AwayFinalScore",
+          "HomeWin"
+        ]
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "Date"
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_distinct_values_to_be_in_set",
+      "kwargs": {
+        "column": "Date",
+        "value_set": [
+          "2020-12-22 00:00:00",
+          "2020-12-23 00:00:00",
+          "2020-12-25 00:00:00",
+          "2020-12-26 00:00:00",
+          "2020-12-27 00:00:00",
+          "2020-12-28 00:00:00",
+          "2020-12-29 00:00:00",
+          "2020-12-30 00:00:00",
+          "2020-12-31 00:00:00",
+          "2021-01-01 00:00:00",
+          "2021-01-02 00:00:00",
+          "2021-01-03 00:00:00",
+          "2021-01-04 00:00:00",
+          "2021-01-05 00:00:00",
+          "2021-01-06 00:00:00",
+          "2021-01-07 00:00:00",
+          "2021-01-08 00:00:00",
+          "2021-01-09 00:00:00",
+          "2021-01-10 00:00:00",
+          "2021-01-11 00:00:00",
+          "2021-01-12 00:00:00",
+          "2021-01-13 00:00:00",
+          "2021-01-14 00:00:00",
+          "2021-01-15 00:00:00",
+          "2021-01-16 00:00:00",
+          "2021-01-17 00:00:00",
+          "2021-01-18 00:00:00",
+          "2021-01-19 00:00:00",
+          "2021-01-20 00:00:00"
+        ]
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_kl_divergence_to_be_less_than",
+      "kwargs": {
+        "column": "Date",
+        "partition_object": {
+          "values": [
+            "2020-12-22 00:00:00",
+            "2020-12-23 00:00:00",
+            "2020-12-25 00:00:00",
+            "2020-12-26 00:00:00",
+            "2020-12-27 00:00:00",
+            "2020-12-28 00:00:00",
+            "2020-12-29 00:00:00",
+            "2020-12-30 00:00:00",
+            "2020-12-31 00:00:00",
+            "2021-01-01 00:00:00",
+            "2021-01-02 00:00:00",
+            "2021-01-03 00:00:00",
+            "2021-01-04 00:00:00",
+            "2021-01-05 00:00:00",
+            "2021-01-06 00:00:00",
+            "2021-01-07 00:00:00",
+            "2021-01-08 00:00:00",
+            "2021-01-09 00:00:00",
+            "2021-01-10 00:00:00",
+            "2021-01-11 00:00:00",
+            "2021-01-12 00:00:00",
+            "2021-01-13 00:00:00",
+            "2021-01-14 00:00:00",
+            "2021-01-15 00:00:00",
+            "2021-01-16 00:00:00",
+            "2021-01-17 00:00:00",
+            "2021-01-18 00:00:00",
+            "2021-01-19 00:00:00",
+            "2021-01-20 00:00:00"
+          ],
+          "weights": [
+            0.010320149887891228,
+            0.05836822868141656,
+            0.02428511461714087,
+            0.051907896757548144,
+            0.04777164620724254,
+            0.02397796729904887,
+            0.04736211644978653,
+            0.029332568877786083,
+            0.03337667523266409,
+            0.047495213620959736,
+            0.02865684477798368,
+            0.038424129493309304,
+            0.04318491292373532,
+            0.023701534712766065,
+            0.051549558219774146,
+            0.023916537835430466,
+            0.04661472464242933,
+            0.038239841102454104,
+            0.032619045181370494,
+            0.03226070664359649,
+            0.02854422409468328,
+            0.03240404205870609,
+            0.022902951685726865,
+            0.033458581184155296,
+            0.029414474829277282,
+            0.023998443786921668,
+            0.04272419194659732,
+            0.009419184421488026,
+            0.04376849282811012
+          ]
+        },
+        "threshold": 0.6
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "GameTimeLeft"
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_min_to_be_between",
+      "kwargs": {
+        "column": "GameTimeLeft",
+        "max_value": -1439,
+        "min_value": -1441
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_max_to_be_between",
+      "kwargs": {
+        "column": "GameTimeLeft",
+        "max_value": 2881,
+        "min_value": 2879
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_mean_to_be_between",
+      "kwargs": {
+        "column": "GameTimeLeft",
+        "max_value": 1381.351437961361,
+        "min_value": 1379.351437961361
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_median_to_be_between",
+      "kwargs": {
+        "column": "GameTimeLeft",
+        "max_value": 1402.0,
+        "min_value": 1400.0
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_quantile_values_to_be_between",
+      "kwargs": {
+        "allow_relative_error": false,
+        "column": "GameTimeLeft",
+        "quantile_ranges": {
+          "quantiles": [
+            0.05,
+            0.25,
+            0.5,
+            0.75,
+            0.95
+          ],
+          "value_ranges": [
+            [
+              76,
+              78
+            ],
+            [
+              651,
+              653
+            ],
+            [
+              1400,
+              1402
+            ],
+            [
+              2112,
+              2114
+            ],
+            [
+              2695,
+              2697
+            ]
+          ]
+        }
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "AwayPlay",
+        "mostly": 0.406
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    },
+    {
+      "expectation_type": "expect_column_value_lengths_to_be_between",
+      "kwargs": {
+        "column": "AwayPlay",
+        "min_value": 1
+      },
+      "meta": {
+        "BasicSuiteBuilderProfiler": {
+          "confidence": "very low"
+        }
+      }
+    }
+  ],
+  "meta": {
+    "BasicSuiteBuilderProfiler": {
+      "batch_kwargs": {
+        "data_asset_name": "2020-21pbpfeatures_unnormalized",
+        "datasource": "data",
+        "path": "C:\\Classes\\194-80\\nba_live_predict\\great_expectations\\..\\.\\2020-21pbpfeatures_unnormalized.csv"
+      },
+      "created_at": 1620708739.3229673,
+      "created_by": "BasicSuiteBuilderProfiler"
+    },
+    "citations": [
+      {
+        "batch_definition": null,
+        "batch_kwargs": {
+          "data_asset_name": "2020-21pbpfeatures_unnormalized",
+          "datasource": "data",
+          "path": "C:\\Classes\\194-80\\nba_live_predict\\great_expectations\\..\\.\\2020-21pbpfeatures_unnormalized.csv"
+        },
+        "batch_markers": {
+          "ge_load_time": "20210511T045212.965976Z",
+          "pandas_data_fingerprint": "9ef0f70a9c17a826d8772461cd4e1c37"
+        },
+        "batch_parameters": null,
+        "batch_request": null,
+        "batch_spec": null,
+        "citation_date": "2021-05-11T04:52:19.432813Z",
+        "comment": "BasicSuiteBuilderProfiler added a citation based on the current batch."
+      }
+    ],
+    "columns": {
+      "2-pt shot": {
+        "description": ""
+      },
+      "3-pt shot": {
+        "description": ""
+      },
+      "Assister": {
+        "description": ""
+      },
+      "Away 2-pt shot": {
+        "description": ""
+      },
+      "Away 2-pt shotTotal": {
+        "description": ""
+      },
+      "Away 3-pt shot": {
+        "description": ""
+      },
+      "Away 3-pt shotTotal": {
+        "description": ""
+      },
+      "AwayAssist": {
+        "description": ""
+      },
+      "AwayAssistTotal": {
+        "description": ""
+      },
+      "AwayCurrentTotal": {
+        "description": ""
+      },
+      "AwayDRB": {
+        "description": ""
+      },
+      "AwayDRBTotal": {
+        "description": ""
+      },
+      "AwayFinalScore": {
+        "description": ""
+      },
+      "AwayFoul": {
+        "description": ""
+      },
+      "AwayFoulTotal": {
+        "description": ""
+      },
+      "AwayFreeThrow": {
+        "description": ""
+      },
+      "AwayFreeThrowTotal": {
+        "description": ""
+      },
+      "AwayMade 2-pt shot": {
+        "description": ""
+      },
+      "AwayMade 2-pt shotTotal": {
+        "description": ""
+      },
+      "AwayMade 3-pt shot": {
+        "description": ""
+      },
+      "AwayMade 3-pt shotTotal": {
+        "description": ""
+      },
+      "AwayMadeFreeThrow": {
+        "description": ""
+      },
+      "AwayMadeFreeThrowTotal": {
+        "description": ""
+      },
+      "AwayORB": {
+        "description": ""
+      },
+      "AwayORBTotal": {
+        "description": ""
+      },
+      "AwayPlay": {
+        "description": ""
+      },
+      "AwayPlayOneHot": {
+        "description": ""
+      },
+      "AwayScore": {
+        "description": ""
+      },
+      "AwayTeam": {
+        "description": ""
+      },
+      "AwayTurnover": {
+        "description": ""
+      },
+      "AwayTurnoverTotal": {
+        "description": ""
+      },
+      "Date": {
+        "description": ""
+      },
+      "FoulType": {
+        "description": ""
+      },
+      "Fouled": {
+        "description": ""
+      },
+      "Fouler": {
+        "description": ""
+      },
+      "FreeThrowNum": {
+        "description": ""
+      },
+      "FreeThrowOutcome": {
+        "description": ""
+      },
+      "FreeThrowShooter": {
+        "description": ""
+      },
+      "GameTimeLeft": {
+        "description": ""
+      },
+      "GameTimeLeftCos": {
+        "description": ""
+      },
+      "GameTimeLeftSin": {
+        "description": ""
+      },
+      "Home 2-pt shot": {
+        "description": ""
+      },
+      "Home 2-pt shotTotal": {
+        "description": ""
+      },
+      "Home 3-pt shot": {
+        "description": ""
+      },
+      "Home 3-pt shotTotal": {
+        "description": ""
+      },
+      "HomeAssist": {
+        "description": ""
+      },
+      "HomeAssistTotal": {
+        "description": ""
+      },
+      "HomeCurrentTotal": {
+        "description": ""
+      },
+      "HomeDRB": {
+        "description": ""
+      },
+      "HomeDRBTotal": {
+        "description": ""
+      },
+      "HomeFinalScore": {
+        "description": ""
+      },
+      "HomeFoul": {
+        "description": ""
+      },
+      "HomeFoulTotal": {
+        "description": ""
+      },
+      "HomeFreeThrow": {
+        "description": ""
+      },
+      "HomeFreeThrowTotal": {
+        "description": ""
+      },
+      "HomeMade 2-pt shot": {
+        "description": ""
+      },
+      "HomeMade 2-pt shotTotal": {
+        "description": ""
+      },
+      "HomeMade 3-pt shot": {
+        "description": ""
+      },
+      "HomeMade 3-pt shotTotal": {
+        "description": ""
+      },
+      "HomeMadeFreeThrow": {
+        "description": ""
+      },
+      "HomeMadeFreeThrowTotal": {
+        "description": ""
+      },
+      "HomeORB": {
+        "description": ""
+      },
+      "HomeORBTotal": {
+        "description": ""
+      },
+      "HomePlay": {
+        "description": ""
+      },
+      "HomePlayOneHot": {
+        "description": ""
+      },
+      "HomeScore": {
+        "description": ""
+      },
+      "HomeTeam": {
+        "description": ""
+      },
+      "HomeTurnover": {
+        "description": ""
+      },
+      "HomeTurnoverTotal": {
+        "description": ""
+      },
+      "HomeWin": {
+        "description": ""
+      },
+      "Location": {
+        "description": ""
+      },
+      "Quarter": {
+        "description": ""
+      },
+      "ReboundType": {
+        "description": ""
+      },
+      "Rebounder": {
+        "description": ""
+      },
+      "SecLeft": {
+        "description": ""
+      },
+      "ShotOutcome": {
+        "description": ""
+      },
+      "ShotType": {
+        "description": ""
+      },
+      "Time": {
+        "description": ""
+      },
+      "TurnoverCause": {
+        "description": ""
+      },
+      "TurnoverCauser": {
+        "description": ""
+      },
+      "TurnoverPlayer": {
+        "description": ""
+      },
+      "TurnoverType": {
+        "description": ""
+      },
+      "URL": {
+        "description": ""
+      },
+      "WinningTeam": {
+        "description": ""
+      },
+      "hour": {
+        "description": ""
+      },
+      "hour_cos": {
+        "description": ""
+      },
+      "hour_sin": {
+        "description": ""
+      }
+    },
+    "great_expectations_version": "0.13.19",
+    "notes": {
+      "content": [
+        "#### This is an _example_ suite\n\n- This suite was made by quickly glancing at 1000 rows of your data.\n- This is **not a production suite**. It is meant to show examples of expectations.\n- Because this suite was auto-generated using a very basic profiler that does not know your data like you do, many of the expectations may not be meaningful.\n"
+      ],
+      "format": "markdown"
+    }
+  }
+}
