@@ -3,14 +3,20 @@ from datetime import datetime
 from LSTM_Model import LSTM_Model
 from prepare_data import cols
 import pandas as pd
+
 test_data = torch.load('test_data.pt')
 test_data_unnormalized = torch.load('test_data_unnormalized.pt')
 times = torch.load('times.pt')
 game_lengths = torch.load('game_lengths.pt')
-state_dict = torch.load('model3.pt')
-model = LSTM_Model(test_data.shape[-1], 512)
-model.load_state_dict(state_dict)
-model.eval()
+state_dict25 = torch.load('model25.pt')
+state_dict75 = torch.load('model75.pt')
+model25 = LSTM_Model(test_data.shape[-1], 512)
+model25.load_state_dict(state_dict25)
+model25.eval()
+
+model75 = LSTM_Model(test_data.shape[-1], 512)
+model75.load_state_dict(state_dict75)
+model75.eval()
 
 df_test = pd.read_csv("./2020-21pbpfeatures.csv.zip")
 sizes = df_test.groupby(['URL']).size()
@@ -29,6 +35,7 @@ seconds_per_play = 5
 start_times = {
     16: datetime.strptime("05/10/21 18:09", "%m/%d/%y %H:%M"),
     69: datetime.strptime("05/10/21 18:09", "%m/%d/%y %H:%M"),
+
 }
 def get_live_preds():
     plays = torch.zeros(len(start_times), 700, test_data.shape[-1])
@@ -76,14 +83,26 @@ def get_live_preds():
 
         # print(plays[game_idx, num_plays, -2])
 
-    output_seq = model(plays)
+    output_seq25 = model25(plays)
+    output_seq75 = model75(plays)
         
-    B = output_seq.shape[0]
-    last_output = torch.zeros(B, 2) 
+    B = output_seq25.shape[0]
+    # last_output = torch.zeros(B, 2) 
+    preds = torch.zeros(B, 2) 
+
     for j in range(B):
-        last_output[j] = output_seq[j, play_indices[j], :]   
+        # last_output[j] = output_seq[j, play_indices[j], :]  
+
+        quarter = time_left[i][0]
+        if quarter == 1:
+            preds[j] = output_seq25[j, play_indices[j]]
+        elif quarter == 2:
+            preds[j] = 0.5 * (output_seq25[j, play_indices[j]] + output_seq75[j, play_indices[j]])
+        elif quarter >= 3:
+            preds[j] = output_seq75[j, play_indices[j]]
+        
     
-    preds = last_output * 15 + 100
+    preds = preds * 15 + 100
     # print(time_left)
     live_scores = live_scores * 15 + 100
     print(preds)
