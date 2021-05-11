@@ -25,8 +25,8 @@ def build_batch(data, homeLabels, awayLabels, indices, masks):
 seconds_per_play = 5
 # start_time = datetime.strptime("05/08/21 23:50", "%m/%d/%y %H:%M")
 start_times = {
-    16: datetime.strptime("05/10/21 01:54", "%m/%d/%y %H:%M"),
-    69: datetime.strptime("05/09/21 22:42", "%m/%d/%y %H:%M"),
+    16: datetime.strptime("05/10/21 17:28", "%m/%d/%y %H:%M"),
+    69: datetime.strptime("05/10/21 17:28", "%m/%d/%y %H:%M"),
 }
 def get_live_preds():
     plays = torch.zeros(len(start_times), 700, test_data.shape[-1])

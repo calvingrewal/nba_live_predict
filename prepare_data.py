@@ -30,7 +30,7 @@ def pad_data(data):
     # return np.array(masks)
     return None
     
-def prep_data(path):
+def prep_data(path, outfile):
     """ loads our "realtime" data and saves it to disk to be used later """
     df_test = pd.read_csv(path)
     test_game_urls = df_test['URL'].unique()
@@ -38,6 +38,7 @@ def prep_data(path):
 
     testHomeLabels = df_test.groupby('URL')['HomeFinalScore'].max()
     testAwayLabels = df_test.groupby('URL')['AwayFinalScore'].max()
+
 
     print(f'data has {len(testHomeLabels)} games')
     df_test['listified'] = df_test[cols].apply(list, axis=1).aggregate(list)
@@ -51,8 +52,11 @@ def prep_data(path):
     game_lengths = df_test.groupby('URL').size().tolist()
     game_lengths = torch.tensor(game_lengths)
     torch.save(game_lengths, 'game_lengths.pt')
-    torch.save(test_data, 'test_data.pt')
+    torch.save(test_data, outfile)
+
+
 
 if __name__ == "__main__":
     print('preparing data!')
-    prep_data('./2020-21pbpfeatures.csv.zip')
+    prep_data('./2020-21pbpfeatures.csv.zip', 'test_data.pt')
+    prep_data('./2020-21pbpfeatures_unnormalized.csv.zip', 'test_data_unnormalized.pt')

@@ -1,16 +1,19 @@
 {% extends "layout.html" %}
 {% block body %}
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+</head>
 <style>
-	@font-face {
-		font-family: 'Rajdhani-SemiBold';
-		src: local('../Rajdhani-SemiBold/rajdhani/Rajdhani-SemiBold.ttf');
-
-		font-weight: bold;
-		font-style: normal;
-	}
 	.score-boxes {
-		font-family: 'Rajdhani-SemiBold';
+		font-family: 'Rajdhani', sans-serif;
 		font-size: 30px;
+	}
+	.totheright{ /*this will align the text to the right*/
+	  text-align:right;
+	}
+	.tothecenter{
+		text-align: center;
 	}
 </style>
 <body>
@@ -25,34 +28,37 @@
 		<h3>{{ clean_today_date }}</h3>
 
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-md-12">
 				<div class="list-group">
 					{% for game in games %}
 						<a class="score-boxes list-group-item list-group-item-action" href="/boxscores/{{ game['GAME_ID'] }}">
-							<div class="col-xs-12">
+							<div class="col-md-12">
 								<div class="row">
-		
-									{{ game["TIME_LEFT"] }}
-
+									<div class="col-md-12 tothecenter">
+										Time Remaining: {{ game["TIME_LEFT"] }}
+									</div>
 									
 								</div>
+								<!-- <div class="row", height="50px">
+									<img src="{{ '/logos/' + game['TEAM_1_ABBREVIATION'] + '.png' }}", width="auto", padding-right="10%", height="50px">
+									<img src="{{ '/logos/' + game['TEAM_2_ABBREVIATION'] + '.png' }}", width="auto", padding-left="10%", height="50px">
+								</div> -->
 								<div class="row">
-									<div class="col-xs-4 team">
-										{{ game["TEAM_1_ABBREVIATION"] }} {{ game["TEAM_1_PTS"] }}
-										<br>
-										Predicted: {{ game["TEAM_1_PRED"] }}
-										<br>
-										{{ game["TEAM_1_WINS_LOSSES"] }}
+									<div class="col-md-4">
+										<img src="{{ '/logos/' + game['TEAM_1_ABBREVIATION'] + '.png' }}", width="auto", padding-right="10%", height="50px">
+
+										<p font-size="30px">{{ game["TEAM_1_PTS"] }}</p>
+										<p font-size="15px">Predicted: {{ game["TEAM_1_PRED"] }} </p>
+										<p font-size="15px">{{ game["TEAM_1_WINS_LOSSES"] }} </p>
 									</div>
-									<div class="col-xs-4">
-										-&nbsp;
+									<div class="col-md-4 tothecenter">
+										vs
 									</div>
-									<div class="col-xs-4 team">
-										{{ game["TEAM_2_ABBREVIATION"] }} {{ game["TEAM_2_PTS"] }}
-										<br>
-										Predicted: {{ game["TEAM_2_PRED"] }}
-										<br>
-										{{ game["TEAM_2_WINS_LOSSES"] }}
+									<div class="col-md-4 totheright">
+										<img src="{{ '/logos/' + game['TEAM_2_ABBREVIATION'] + '.png' }}", width="auto", padding-left="10%", height="50px">
+										<p font-size="30px">{{ game["TEAM_2_PTS"] }}</p>
+										<p font-size="15px"> Predicted: {{ game["TEAM_2_PRED"] }} </p>	
+										<p font-size="15px"> {{ game["TEAM_2_WINS_LOSSES"] }} </p>
 									</div>
 								</div>
 							</div>

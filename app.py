@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template
+from flask import render_template, url_for, send_from_directory
 from datetime import timedelta
 
 from live_data import get_live_preds
@@ -10,7 +10,7 @@ def format_time(t):
     a[2] = a[2].split(".")[0]
 
     return ":".join(a[1:])
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def hello_world():
     pred_scores, live_scores, time_lefts = get_live_preds()
     # print(live_scores)
@@ -44,4 +44,7 @@ def live_predict():
 	# live_pbp = get_live_data()
 	return "hey bestie"
 
+@app.route('/logos/<path:filename>')
+def send_file(filename):
+	return send_from_directory('logos', filename)
 
