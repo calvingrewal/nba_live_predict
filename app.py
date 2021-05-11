@@ -20,7 +20,7 @@ def hello_world():
         pred_score = pred_scores[i]
         live_score = live_scores[i]
 
-        d = timedelta(seconds=time_left)
+        d = timedelta(seconds=time_left[1])
 
         # print("time?",  str(d))
         print(live_scores)
@@ -32,7 +32,8 @@ def hello_world():
             "TEAM_2_PTS": live_score[1],
             "TEAM_2_PRED": int(pred_score[1]),
             "TEAM_2_WINS_LOSSES": "45-27",
-            "TIME_LEFT": format_time(d)
+            "TIME_LEFT": format_time(d),
+            "QUARTER": time_left[0]
             }
    
         games.append(game)

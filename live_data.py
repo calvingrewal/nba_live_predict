@@ -4,6 +4,8 @@ from LSTM_Model import LSTM_Model
 from prepare_data import cols
 import pandas as pd
 test_data = torch.load('test_data.pt')
+test_data_unnormalized = torch.load('test_data_unnormalized.pt')
+times = torch.load('times.pt')
 game_lengths = torch.load('game_lengths.pt')
 state_dict = torch.load('model3.pt')
 model = LSTM_Model(test_data.shape[-1], 512)
@@ -25,13 +27,13 @@ def build_batch(data, homeLabels, awayLabels, indices, masks):
 seconds_per_play = 5
 # start_time = datetime.strptime("05/08/21 23:50", "%m/%d/%y %H:%M")
 start_times = {
-    16: datetime.strptime("05/10/21 17:28", "%m/%d/%y %H:%M"),
-    69: datetime.strptime("05/10/21 17:28", "%m/%d/%y %H:%M"),
+    16: datetime.strptime("05/10/21 18:09", "%m/%d/%y %H:%M"),
+    69: datetime.strptime("05/10/21 18:09", "%m/%d/%y %H:%M"),
 }
 def get_live_preds():
     plays = torch.zeros(len(start_times), 700, test_data.shape[-1])
     live_scores = torch.zeros(len(start_times), 2)
-    time_left = torch.zeros(len(start_times))
+    time_left = torch.zeros(len(start_times), 2)
     
     play_indices = []
     for i, (game_idx, dt) in enumerate(start_times.items()):
@@ -50,9 +52,7 @@ def get_live_preds():
         time_left_sin = test_data[game_idx, play_idx, 0]
         time_left_cos = test_data[game_idx, play_idx, 1]
 
-        time_left1 = torch.arcsin(time_left_sin).item() * 48*60 / 2 / 3.14159
-        time_left2 = torch.arccos(time_left_cos).item() * 48*60 / 2 / 3.14159
-        time_left[i] = max(time_left1, time_left2)
+        time_left[i] = torch.FloatTensor([times[game_idx,play_idx,0], times[game_idx, play_idx, 1]])
         # print('time?', time_left[i])
         plays[i] = get_k_plays(num_plays, game_idx)
 
