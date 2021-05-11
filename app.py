@@ -1,9 +1,11 @@
 from flask import Flask
 from flask import render_template, url_for, send_from_directory
+import torch
+app = Flask(__name__)
+torch.set_num_threads(1)
 from datetime import timedelta
 
 from live_data import get_live_preds
-app = Flask(__name__)
 
 def format_time(t):
     a = str(t).split(":")
@@ -15,7 +17,7 @@ def hello_world():
     pred_scores, live_scores, time_lefts, asts, drbs, orbs, fts, twopt, threept = get_live_preds()
     # print(live_scores)
     games = []
-    teams = [("GSW", "POR"), ("MEM", "ATL"), ("LAL","LAC"), ("NYK", "BKN"), ("TOR", "MIA"), ("SAC", "DAL")]
+    teams = [("GSW", "POR"), ("MEM", "ATL"), ("LAL","LAC"), ("NYK", "OKC"), ("TOR", "MIA"), ("SAC", "DAL")]
     for i in range(len(pred_scores)):
         time_left = time_lefts[i]
         pred_score = pred_scores[i]
