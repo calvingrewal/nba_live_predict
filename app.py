@@ -29,10 +29,10 @@ def hello_world():
         print(live_scores)
         game = {"TEAM_1_ABBREVIATION": teams[i][1], 
             "TEAM_1_PTS": live_score[0],
-            "TEAM_1_PRED": int(pred_score[0]),
+            "TEAM_1_PRED": int(pred_score[1]),
             "TEAM_2_ABBREVIATION": "LAL", 
             "TEAM_2_PTS": live_score[1],
-            "TEAM_2_PRED": int(pred_score[1]),
+            "TEAM_2_PRED": int(pred_score[0]),
             "TIME_LEFT": format_time(d),
             "QUARTER": time_left[0],
             "TEAM_1_AST": int(asts[i][0].item()),

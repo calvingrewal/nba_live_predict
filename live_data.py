@@ -33,8 +33,8 @@ def build_batch(data, homeLabels, awayLabels, indices, masks):
 seconds_per_play = 5
 # start_time = datetime.strptime("05/08/21 23:50", "%m/%d/%y %H:%M")
 start_times = {
-    16: datetime.strptime("05/10/21 20:05", "%m/%d/%y %H:%M"),
-    69: datetime.strptime("05/10/21 19:55", "%m/%d/%y %H:%M"),
+    16: datetime.strptime("05/11/21 03:20", "%m/%d/%y %H:%M"),
+    69: datetime.strptime("05/11/21 03:10", "%m/%d/%y %H:%M"),
 
 }
 def get_live_preds():
