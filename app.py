@@ -1,8 +1,8 @@
 from flask import Flask
 from flask import render_template, url_for, send_from_directory
 import torch
-app = Flask(__name__)
 torch.set_num_threads(1)
+app = Flask(__name__)
 from datetime import timedelta
 
 from live_data import get_live_preds
