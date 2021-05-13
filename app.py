@@ -26,7 +26,6 @@ def hello_world():
         d = timedelta(seconds=time_left[1])
 
         # print("time?",  str(d))
-        print(live_scores)
         game = {"TEAM_1_ABBREVIATION": teams[i][0], 
             "TEAM_1_PTS": live_score[0],
             "TEAM_1_PRED": int(pred_score[1]),

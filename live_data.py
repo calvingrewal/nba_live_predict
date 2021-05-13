@@ -60,7 +60,7 @@ def get_live_preds():
         
         num_plays = min(699, int(seconds_since_start // seconds_per_play))
 
-        print(f"{seconds_since_start} seconds have passed since start, returning {num_plays} plays")
+        # print(f"{seconds_since_start} seconds have passed since start, returning {num_plays} plays")
         
         game_length = game_lengths[game_idx].item()
 
@@ -109,7 +109,7 @@ def get_live_preds():
     preds = preds * 15 + 100
     # print(time_left)
     live_scores = live_scores * 15 + 100
-    print(preds)
+    # print(preds)
     return preds.tolist(), live_scores.tolist(), time_left.tolist(), asts, drbs, orbs, fts, twopt, threept
 
 def get_k_plays(k, game_idx):
